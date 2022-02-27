@@ -10,7 +10,7 @@ const FlexContainer = styled.header`
 	flex-diretion: row;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 15rem;
+	margin-top: 5rem;
 	margin-bottom: 7rem;
 `;
 

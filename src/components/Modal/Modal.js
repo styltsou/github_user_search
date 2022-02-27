@@ -8,17 +8,19 @@ const Backdrop = styled.div`
 	left: 0;
 	width: 100%;
 	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background-color: ${(props) =>
 		props.isOpen ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0)"};
 	z-index: 100;
 	visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
 	transition: all 0.1s ease-out;
+	overflow: hidden;
 `;
 
 const ModalBox = styled.div`
-	position: absolute;
-	transform: ${(props) =>
-		props.isOpen ? "translateY(20%)" : "translateY(35%)"};
+	transform: ${(props) => (props.isOpen ? "translateY(0)" : "translateY(15%)")};
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -35,16 +37,11 @@ const ModalBox = styled.div`
 	transition: all 0.1s ease-out;
 `;
 
-const CloseButton = styled.button`
+const CloseIcon = styled(IoClose)`
 	position: fixed;
 	align-self: flex-end;
-	background-color: transparent;
-	border: none;
-	padding: 0.8rem;
-`;
-
-const CloseIcon = styled(IoClose)`
-	font-size: 3rem;
+	padding: 0.5rem;
+	font-size: 4.5rem;
 	color: var(--color-text-alt);
 	line-height: 100%;
 `;
@@ -59,22 +56,20 @@ const Title = styled.h1`
 `;
 
 function Modal({ modalRef, title, isOpen, setIsOpen, children }) {
-	const closeModal = (e) => {
-		e.stopPropagation();
+	const closeModal = () => {
 		setIsOpen((prevState) => !prevState);
 	};
 
+	/* onClick event on modal box prevents modal form from closing
+		due to event bubbling when clicking on it */
 	return (
-		<>
-			<Backdrop isOpen={isOpen} onClick={closeModal} />
-			<ModalBox isOpen={isOpen}>
-				<CloseButton onClick={closeModal}>
-					<CloseIcon />
-				</CloseButton>
+		<Backdrop isOpen={isOpen} onClick={closeModal}>
+			<ModalBox isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
+				<CloseIcon onClick={closeModal} />
 				<Title>{title}</Title>
 				{cloneElement(children, { modalRef: modalRef })}
 			</ModalBox>
-		</>
+		</Backdrop>
 	);
 }
 

@@ -13,8 +13,8 @@ const BackgroundContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
+	min-height: 100vh;
 	width: 100%;
-	height: 100vh;
 	background-color: var(--color-background);
 `;
 
