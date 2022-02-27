@@ -18,7 +18,7 @@ const Backdrop = styled.div`
 const ModalBox = styled.div`
 	position: absolute;
 	transform: ${(props) =>
-		props.isOpen ? "translateY(25%)" : "translateY(35%)"};
+		props.isOpen ? "translateY(20%)" : "translateY(35%)"};
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;

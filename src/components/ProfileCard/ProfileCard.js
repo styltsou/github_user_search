@@ -25,7 +25,7 @@ const Bio = styled.p`
 	font-size: 1.6rem;
 	color: var(--color-text);
 
-	@media only screen and (min-width: 980px) {
+	@media only screen and (max-width: 980px) {
 		grid-column-start: 1;
 		margin: 6rem 0rem 3rem 0rem;
 	}
@@ -35,7 +35,7 @@ const Wrapper = styled.div`
 	grid-column-start: 2;
 	grid-column-end: 3;
 
-	@media only screen and (min-width: 980px) {
+	@media only screen and (max-width: 980px) {
 		grid-column-start: 1;
 	}
 `;

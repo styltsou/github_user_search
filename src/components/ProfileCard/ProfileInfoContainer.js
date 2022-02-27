@@ -4,7 +4,7 @@ import styled from "styled-components";
 const GridContainer = styled.div`
 	display: grid;
 
-	@media only screen and (min-width: 980px) {
+	@media only screen and (max-width: 980px) {
 		grid-gap: 2.4rem;
 	}
 `;
@@ -37,7 +37,7 @@ const JoinedAt = styled.div`
 	font-size: 1.7rem;
 	color: var(--color-text);
 
-	@media only screen and (min-width: 980px) {
+	@media only screen and (max-width: 980px) {
 		grid-column-start: 1;
 		justify-content: flex-start;
 	}
