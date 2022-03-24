@@ -1,9 +1,10 @@
-import React, { cloneElement } from "react";
+import React, { cloneElement, useEffect } from "react";
 import styled from "styled-components";
 import { IoClose } from "react-icons/io5";
+import useLockBodyScroll from "../../hooks/useLockScroll";
 
 const Backdrop = styled.div`
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -35,6 +36,22 @@ const ModalBox = styled.div`
 	opaity: ${(props) => (props.isOpen ? "1" : "0")};
 	visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
 	transition: all 0.1s ease-out;
+
+	@media only screen and (max-width: 815px) {
+		width: 70rem;
+	}
+
+	@media only screen and (max-width: 670px) {
+		width: 100%;
+		height: 100%;
+		border-radius: 0rem;
+	}
+
+	@media only screen and (max-height: 850px) {
+		width: 100%;
+		height: 100%;
+		border-radius: 0rem;
+	}
 `;
 
 const CloseIcon = styled(IoClose)`
@@ -59,6 +76,15 @@ function Modal({ modalRef, title, isOpen, setIsOpen, children }) {
 	const closeModal = () => {
 		setIsOpen((prevState) => !prevState);
 	};
+
+	useEffect(() => {
+		// Lock body scroll when modal is open
+		if (isOpen) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "visible";
+		}
+	}, [isOpen]);
 
 	/* onClick event on modal box prevents modal form from closing
 		due to event bubbling when clicking on it */
